@@ -1,4 +1,4 @@
-import { ComposeSpecification } from "typeswarm";
+import { ComposeSpecification } from "@typeswarm/cli";
 
 function err(m: string): never {
     throw new Error(m);
