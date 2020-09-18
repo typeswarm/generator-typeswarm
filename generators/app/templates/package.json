@@ -1,0 +1,17 @@
+{
+  "name": "<%= name %>",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:dev": "ENV=dev typeswarm render -e .dev.env -c deploy.ts -o dev.compose",
+    "build:prod": "ENV=prod typeswarm render -e .prod.env -c deploy.ts -o prod.compose",
+    "deploy:dev": "npm run build:dev && docker --context='<%= dockerContextDev %>' stack deploy -c dev.compose/docker-compose.yaml '<%= dockerStackDev %>' --with-registry-auth",
+    "deploy:prod": "npm run build:prod && docker --context='<%= dockerContextProd %>' stack deploy -c prod.compose/docker-compose.yaml '<%= dockerStackProd %>' --with-registry-auth"
+  },
+  "dependencies": {
+    "@types/node": "^14.6.2",
+    "dotenv": "^8.2.0",
+    "typeswarm": "latest"
+  }
+}
