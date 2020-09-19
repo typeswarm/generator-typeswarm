@@ -11,11 +11,19 @@ npm install -g yo
 npm install -g generator-typeswarm
 ```
 
-Then generate your new project:
+Then generate a new TypeSwarm project:
 
 ```bash
 yo typeswarm
 ```
+
+To generate a reusable TypeSwarm package, use the following command:
+
+
+```bash
+yo typeswarm:package
+```
+
 
 [npm-image]: https://badge.fury.io/js/generator-typeswarm.svg
 [npm-url]: https://npmjs.org/package/generator-typeswarm
