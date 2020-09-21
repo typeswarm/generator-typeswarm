@@ -10,7 +10,9 @@
     ],
     "scripts": {
         "example": "typeswarm render -c src/example/example.ts -o example.compose",
-        "build": "tsc",
+        "build": "npm run build:types && npm run build:js",
+        "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
+        "build:types": "tsc --emitDeclarationOnly",
         "prepublish": "npm run build"
     },
     "dependencies": {
@@ -19,9 +21,17 @@
         "immer": "^7.0.9"
     },
     "peerDependencies": {
-        "@typeswarm/cli": ">=0.0.15"
+        "@typeswarm/cli": ">=0.0.18"
     },
     "devDependencies": {
-        "@typeswarm/cli": ">=0.0.15"
+        "@babel/cli": "^7.10.5",
+        "@babel/core": "^7.11.4",
+        "@babel/plugin-proposal-class-properties": "^7.10.4",
+        "@babel/preset-env": "^7.11.0",
+        "@babel/preset-typescript": "^7.10.4",
+        "@types/jest": "^26.0.14",
+        "@typeswarm/cli": ">=0.0.18",
+        "jest": "^26.4.2",
+        "prettier": "^2.1.2"
     }
 }

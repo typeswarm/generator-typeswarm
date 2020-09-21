@@ -1,5 +1,11 @@
 import immer from "immer";
-import { ComposeSpecification, DefinitionsService } from "@typeswarm/cli";
+import {
+    StrictService,
+    parseService,
+    StrictPortMapping,
+    StrictSpecification,
+} from "@typeswarm/cli/lib/normalize";
+import { DefinitionsService } from "@typeswarm/cli";
 
 //TODO: Rename this file
 
@@ -18,8 +24,8 @@ export interface ExampleOptions {
 export const Example = ({
     image = "containous/whoami",
     tag = "v1.5.0",
-}: ExampleOptions): ComposeSpecification => {
-    const spec: ComposeSpecification = {
+}: ExampleOptions): StrictSpecification => {
+    const spec: StrictSpecification = {
         services: {
             someService: {
                 image: `${image}:${tag}`,
@@ -39,10 +45,8 @@ export const Example = ({
 //TODO: rename this function
 //This is another example - a plugin which takes a service definition and
 //returns another service definition with some properties added
-export const examplePlugin = (
-    service: DefinitionsService
-): DefinitionsService => {
-    return immer(service, (service: DefinitionsService) => {
+export const examplePlugin = (service: DefinitionsService): StrictService => {
+    return immer(parseService(service), (service: StrictService) => {
         //You can mutate service here, the result returned from
         //`immer` function will be a new copy of the input object
 
